@@ -13,19 +13,26 @@
     {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
+
 <body>
     <header class="header">
         <nav class="naw_wrapper">
             <a href="{% url 'home' %}" class="nav_logo hower_nav">Допомога Київ</a>
             <div class="naw_links_wrapper">
-                <a href="{% url 'news' %}" class="nav_link hower_nav">Новини</a>
-                <a href="" class="nav_link hower_nav">Корисна інформація</a>
+                <a href="" class="nav_link hower_nav">Новини</a>
+                <a href="{% url 'articles' %}" class="nav_link hower_nav">Корисна інформація</a>
                 <a href="" class="nav_link hower_nav">Про нас</a>
             </div>
         </nav>
     </header>
-
+    
     {% block content %}
     {% endblock %}
+
+    <footer class="footer">
+        <div class="footer_wrapper">
+            <div class="site_name">Допомога Київ</div>
+        </div>
+    </footer>
 </body>
 </html>

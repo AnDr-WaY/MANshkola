@@ -1,0 +1,39 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+    <script src="{% static 'main/js/article.js' %}" async defer></script>
+{% endblock %}
+
+{% block title %}Новини{% endblock %}
+{% block content %}
+
+<div id="link_copied_alert" class="link_copied_wrapper">
+    <span>Посилання скопійовано!</span>
+</div>
+
+<div class="wrapper">
+    <div class="info_wrapper">
+        <div class="info_header">
+            <h1 class="info_title">{{ article.name }}</h1>
+            <div class="info_header_sep">
+                <div class="info_date">{{ article.date }}</div>
+
+                <div class="info_share">
+                    <span>Поділитись: </span>
+                    <a class="icon_share" id="share_viber"><img src="{% static 'main/icons/viber.png' %}" alt=""></a>
+                    <a class="icon_share" id="share_facebook"><img src="{% static 'main/icons/facebook.png' %}" alt=""></a>
+                    <a class="icon_share" id="share_telegram"><img src="{% static 'main/icons/telegram.png' %}" alt=""></a>
+                    <a class="icon_share" id="copy_link"><img src="{% static 'main/icons/link.svg' %}" alt=""></a>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="info_content">
+            {% autoescape off %}{{ article.content }}{% endautoescape %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
