@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+    <script src="{% static 'main/js/article.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}Новина: {{ new.name }}{% endblock %}
+{% block content %}
+
+<div id="link_copied_alert" class="link_copied_wrapper">
+    <span>Посилання скопійовано!</span>
+</div>
+
+<div class="wrapper">
+    <div class="content_sep">
+        <div class="info_wrapper">
+            <div class="info_header">
+                <h1 class="info_title">{{ new.name }}</h1>
+                <div class="info_header_sep">
+                    <div class="info_date">{{ new.date }}</div>
+                    <div class="info_share">
+                        <span>Поділитись: </span>
+                        <a class="icon_share" id="share_viber"><img src="{% static 'main/icons/viber.png' %}" alt=""></a>
+                        <a class="icon_share" id="share_facebook"><img src="{% static 'main/icons/facebook.png' %}" alt=""></a>
+                        <a class="icon_share" id="share_telegram"><img src="{% static 'main/icons/telegram.png' %}" alt=""></a>
+                        <a class="icon_share" id="copy_link"><img src="{% static 'main/icons/link.svg' %}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <img src="{{ new.icon.url }}" class="info_img" alt="">
+            <div class="info_content">
+                {% autoescape off %}{{ new.content|linebreaks }}{% endautoescape %}
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar_title">
+                Читайте також
+            </div>
+            {% for newSide in allNews %}
+            {% if newSide.name != new.name %}
+                <a href="{% url 'news-detail' newSide.id %}" class="sidebar_item">
+                        <div class="sidebar_item_title">{{ newSide.name }}</div>
+                        <div class="sidebar_item_info">
+                            <div class="sidebar_item_date">{{ newSide.date|date:'H:i, d.m.y' }}</div>
+                        </div>
+                </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

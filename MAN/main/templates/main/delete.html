@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/create.css' %}">
+{% endblock %}
+
+{% block title %}Публікації{% endblock %}
+{% block content %}
+
+
+<div class="wrapper">
+    <div class="form_wrapper">
+        <form action="" class="create_form" method="post" enctype="multipart/form-data">
+            <div class="form_title">
+                Видалити публікацію
+            </div>
+            {% csrf_token %}
+            <button class="create_button" type="submit">Видалити</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

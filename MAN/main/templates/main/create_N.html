@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/create.css' %}">
+{% endblock %}
+{% block title %}Створити статтю{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div class="form_wrapper">
+        <form action="" class="create_form" method="post" enctype="multipart/form-data">
+            <div class="form_title">
+                Створити новину
+            </div>
+            {% csrf_token %}
+            {{ form }}
+            <button class="create_button" type="submit">Створити</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

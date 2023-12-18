@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+{% endblock %}
+{% block title %}Увійти{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div class="form_wrapper">
+        <form class="login_form" method="post">
+            <div class="form_title">
+                Увійти в аккаунт
+            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="login_button" type="submit">Увійти</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

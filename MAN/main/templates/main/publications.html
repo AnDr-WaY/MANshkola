@@ -1,0 +1,78 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/publications.css' %}">
+{% endblock %}
+
+{% block title %}Публікації{% endblock %}
+{% block content %}
+
+
+<div class="wrapper">
+    {% if request.user.is_authenticated %}
+    <div class="publ_content_sep">
+        <div class="my_items">
+            <div class="my_item">
+                <div class="item_part_head">
+                    <div class="my_item-title">Мої статті</div>
+                    <a class="add_item" href="{% url 'create_article' %}">
+                        <span class="plus">+</span>Додати статтю
+                    </a>
+                </div>
+                <div class="parts">
+                    {% for article in articles %}
+                    {% if article.author == request.user %}
+                        <div class="my_item_part">
+                            <a href="{% url 'articles-detail' article.id %}" style="text-decoration: none; color: #000;">{{ article.name }}</a>
+                            <div class="del_and_edit">
+                                <a href="{% url 'articles-delete' article.id %}" class="del_item"><img src="{% static 'main/icons/bin.png' %}" alt=""></a>
+                                <a href="{% url 'articles-update' article.id %}" class="edit_item"><img src="{% static 'main/icons/pencil.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="my_item">
+                <div class="item_part_head">
+                    <div class="my_item-title">Мої новини</div>
+                    <a class="add_item" href="{% url 'create_news' %}">
+                        <span class="plus">+</span> <span> Додати новину</span>
+                    </a>
+                </div>
+                <div class="parts">
+                    {% for new in news %}
+                    {% if new.author == request.user %}
+                        <div class="my_item_part">
+                            <a href="{% url 'news-detail' new.id %}" style="text-decoration: none; color: #000;">{{ new.name }}</a>
+                            <div class="del_and_edit">
+                                <a href="{% url 'news-delete' new.id %}" class="del_item"><img src="{% static 'main/icons/bin.png' %}" alt=""></a>
+                                <a href="{% url 'news-update' new.id %}" class="edit_item"><img src="{% static 'main/icons/pencil.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="publstats_container">
+            <div class="publstats_stats">
+                <h2 class="publstats_title"> Статистика:</h2>
+                <div class="publstats_desc">Статтей: {{ articles|length }}</div>
+                <div class="publstats_desc">Новин: {{ news|length }}</div>
+            </div>
+        </div>
+    </div>
+
+
+    {% else %} <!-- Якщо не увійшли, але перейшли на сторінку -->
+        <h1>Увійдіть у аккаунт!</h1>
+    {% endif %}
+</div>
+
+
+{% endblock %}

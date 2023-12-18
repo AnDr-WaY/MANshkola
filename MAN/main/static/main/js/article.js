@@ -23,3 +23,4 @@ document.getElementById('copy_link').addEventListener('click', async (e)=>{
         isOpened = false;
     };
 })
+

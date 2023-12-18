@@ -1,0 +1,54 @@
+.create_form{
+    margin-top: 40px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create_button{
+    margin-top: 10px;
+    padding: 10px 25px;
+    background-color: #00c34b;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.create_button:hover{
+    background-color: #fff;
+    border-color: #00c34b;
+    color: #000;
+}
+
+.create_field{
+    padding: 15px 10px;
+    border-radius: 7px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+
+    max-width: 80vw;
+}
+
+.create_field_name{
+    width: 50%;
+}
+
+.create_field_area{
+    width: 55%;
+}
+@media (max-width: 990px) {
+    .create_field_name{
+        width: 100%;
+    }
+    
+    .create_field_area{
+        width: 100%;
+        min-height: 50vh;
+    }
+
+}

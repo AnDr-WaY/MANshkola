@@ -1,20 +1,46 @@
 {% extends 'main/layout.html' %}
-{% block head %}{% endblock %}
-{% block title %}Новини{% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/article list.css' %}">
+{% endblock %}
+{% block title %}Статті{% endblock %}
 {% block content %}
 
 <div class="wrapper">
-    <div class="articles_wrapper">
-        {% for article in articles %}
-            <a href="{% url 'articles-detail' article.id %}" class="article_container">
-                <img src="{{ article.icon.url }}" alt="" class="article_img">
-                <div class="article_title">{{ article.name }}</div>
-                <div class="article_info_wrapper">
-                    <div class="article_date">{{ article.date }}</div>
-                    <div class="article_date">{{ article.views }}</div>
-                </div>
-            </a>
-        {% endfor %}
+    <div class="content_sep">
+        <section class="articles_part">
+            <h1 class="article_list_title">
+                Останні статті з корисною інформацією
+            </h1>
+
+            <div class="articles_wrapper">
+                {% for article in articles %}
+                    <a href="{% url 'articles-detail' article.id %}" class="article_container">
+                        <img src="{{ article.icon.url }}" alt="" class="article_img">
+
+                        <div class="article_title">{{ article.name }}</div>
+                        <div class="article_info_wrapper">
+                            <div class="article_date">{{ article.date|date:'H:i, d.m.y' }}</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div class="sidebar">
+            <div class="sidebar_title">
+                Стрічка новин
+            </div>
+            {% for new in news %}
+                <a href="{% url 'news-detail' new.id %}" class="sidebar_item">
+                        <div class="sidebar_item_title">{{ new.name }}</div>
+                    <div class="sidebar_item_info">
+                        <div class="sidebar_item_date">{{ new.date|date:'H:i, d.m.y' }}</div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

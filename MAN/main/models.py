@@ -1,15 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Articles(models.Model):
-    
-    name = models.CharField('Назва', max_length=50)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    name = models.CharField('Назва', max_length=150)
     content = models.TextField('Зміст')
     icon = models.ImageField('Картинка', upload_to = 'main/static/main/ArticleImgs/')
-    date = models.DateTimeField("Дата публікації", auto_now=True)
+    date = models.DateTimeField("Дата публікації", auto_now_add=True)
     
     def __str__(self) -> str:
-        return f"Стаття {self.name}"
+        return f"Стаття: {self.name}"
+       
+    def get_absolute_url(self):
+        return f'/articles/{self.id}'
        
     class Meta:
         verbose_name = 'Стаття'
@@ -17,17 +21,20 @@ class Articles(models.Model):
         
 
 class News(models.Model):
-    name = models.CharField('Назва', max_length=50)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    name = models.CharField('Назва', max_length=150)
     content = models.TextField('Зміст')
     icon = models.ImageField('Картинка', upload_to = 'main/static/main/ArticleImgs/')
-    date = models.DateTimeField("Дата публікації", auto_now=True)
-    views = models.IntegerField("Перегляди", default=0)
+    date = models.DateTimeField("Дата публікації", auto_now_add=True)
 
     
     def __str__(self) -> str:
         return f"Новина: {self.name}"
-       
+    
+    def get_absolute_url(self):
+        return f'/news/{self.id}'   
+    
     class Meta:
         verbose_name = 'Новина'
         verbose_name_plural = 'Новини'
-        
+    

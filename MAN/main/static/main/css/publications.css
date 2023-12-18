@@ -1,0 +1,137 @@
+    .body{
+    background-color: #fcfcfc;
+}
+
+.publ_content_sep{
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    flex-direction: row;
+    height: max-content;
+}
+
+.my_items{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
+
+.my_item {
+    width: 100%;
+    max-height: 70vh;
+    overflow: auto;
+    margin-bottom: 40px;
+
+    border-radius: 7px;
+    border: 2px solid #000;
+}
+.item_part_head{
+    padding: 5px 0 10px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    border-bottom: 1px solid #393939;
+}
+
+.plus{
+    color: rgb(0, 165, 0);
+    font-weight: 700;
+    font-size: 22px;
+    margin-right: 5px;
+}
+.add_item{
+    margin-right: 7px;
+    text-decoration: none;
+    color: #393939;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+.add_item:hover{
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+}
+
+.my_item-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+.my_item_part {
+    border-bottom: 1px solid #393939;
+    padding: 15px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.publstats_container {
+    height: max-content;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #fcfcfc;
+    box-shadow: 1px 0px 10px #00000017;
+    margin-right: 10px;
+}
+.publstats_stats {
+}
+.publstats_title {
+    margin-top: 0;
+}
+.publstats_desc {
+}
+
+.del_and_edit{
+    display: flex;
+    justify-content: space-around;
+    min-width: 100px;
+}
+
+.edit_item {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+.del_item {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+
+.del_item:hover{
+    background-color: #e55454;
+}
+.edit_item:hover{
+    background-color: #f5d638;
+}
+
+.del_item img{
+    width: 26px;
+}
+.edit_item img{
+    width: 26px;
+}
+
+@media (max-width: 990px) {
+    .publ_content_sep{
+        flex-wrap: wrap;
+    }
+
+    .my_items{
+        width: 100%;
+    }
+
+    .publstats_container{
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .my_item-title{
+        font-size: 22px;
+    }
+}

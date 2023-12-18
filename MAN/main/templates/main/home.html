@@ -1,10 +1,89 @@
 {% extends 'main/layout.html' %}
-{% block head %}{% endblock %}
-{% block title %}Главная страница{% endblock %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article list.css' %}">
+    <script src="{% static 'main/js/home.js' %}" defer></script>
+{% endblock %}
+{% block title %}Допомога Київ{% endblock %}
 {% block content %}
+<div class="intro">
+    <div class="intro_container">
+        <div class="itro_head">
+            <h1 class="intro_title">Допомога Київ</h1>
+            <h3 class="itro_subtitle">Це сайт де можна знайти корисну інформацію та прочитати новини</h3>
+        </div>
+
+        <div class="intro_bottom">
+            <span class="intro_arrow"></span>
+        </div>
+    </div>
+</div>
 <div class="wrapper">
-    <h1>cool</h1>
-    <iframe src="https://alerts.in.ua/?embed" style="width: 500px; height: 300px; border: none;" title="Мапа повітряних тривог" frameborder="0" ></iframe>
+    <div class="home_items">
+
+        <div class="home_item">
+            <div class="home_items_wrapper">
+                <div class="home_items_header">
+                    <div class="home_items_title">
+                        Останні статті з корисною інформацією
+                    </div>
+                    <a href="{% url 'articles' %}" class="more_info">Більше статей</a>
+
+                </div>
+                <div class="home_items_container">
+                    {% for article in articles %}
+                        <a href="{% url 'articles-detail' article.id %}" class="article_container">
+                            <img src="{{ article.icon.url }}" alt="" class="article_img">
+
+                            <div class="article_title">{{ article.name }}</div>
+                            <div class="article_info_wrapper">
+                                <div class="article_date">{{ article.date|date:'H:i, d.m.y' }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="home_item">
+            <div class="home_items_wrapper">
+                <div class="home_items_header">
+                    <div class="home_items_title">
+                        Останні новини
+                    </div>
+                    <a href="{% url 'news' %}" class="more_info">Більше новин</a>
+
+                </div>
+                <div class="home_items_container">
+                    {% for new in news %}
+                        <a href="{% url 'news-detail' new.id %}" class="article_container">
+                            <img src="{{ new.icon.url }}" alt="" class="article_img">
+
+                            <div class="article_title">{{ new.name }}</div>
+                            <div class="article_info_wrapper">
+                                <div class="article_date">{{ new.date|date:'H:i, d.m.y' }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="home_item">
+            <div class="home_items_header">
+                <div class="home_items_title">
+                    Мапа повітряних тривог
+                </div>
+                <a href="https://alerts.in.ua/" class="more_info">Перейти на більшу мапу</a>
+                
+            </div>
+
+            <iframe src="https://alerts.in.ua/?embed" class="map" title="Мапа повітряних тривог" frameborder="0" ></iframe>
+        </div>
+
+    </div>
 </div>
 
 {% endblock %}
