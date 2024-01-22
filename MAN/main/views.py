@@ -1,6 +1,7 @@
 import os
+from typing import Any
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import DetailView, UpdateView, DeleteView, ListView
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -115,6 +116,41 @@ class NewsDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
+
+def SearchAcricles(request):
+    if request.method == 'GET':
+        search_query = request.GET.get("q", "")
+        if search_query:
+            allarticles = Articles.objects.filter(name__icontains=search_query).order_by('-date')
+        else:
+            allarticles = Articles.objects.all()
+            
+        return render(request, 'main/articles.html', {"articles": allarticles, "news": News.objects.all().order_by('-date')})
+    
+def SearchNews(request):
+    if request.method == 'GET':
+        search_query = request.GET.get("q", "")
+        if search_query:
+            allnews = News.objects.filter(name__icontains=search_query).order_by('-date')
+        else:
+            allnews = News.objects.all()
+            
+        return render(request, 'main/news.html', {"news": allnews, "articles": Articles.objects.all().order_by('-date')})
+
+
+
+# 
+# class SearchAcricles(ListView):
+#     def get_queryset(self):
+#         return Articles.objects.filter(name__icontains=self.request.GET.get("q", ''))
+
+#     # Для пагінації в майбутньому 
+#     def get_context_data(self, *args, **kwargs: Any):
+#         context = super().get_context_data(*args, **kwargs)
+#         context['articles'] = self.request.GET.get("q")
+#         return context
+        
+        
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)

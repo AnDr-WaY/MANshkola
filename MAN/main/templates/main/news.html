@@ -14,6 +14,15 @@
                 Останні новини
             </h1>
 
+            <div class="search_container">
+                <form class="search_form" action="{% url 'search-news' %}" method="get">
+                    <input class="search_input" type="search" name="q" placeholder="Пошук новини">
+                    <button class="search_button" type="submit">
+                        <img src="{% static 'main/icons/search.png' %}" alt="">
+                    </button>
+                </form>
+            </div>
+
             <div class="articles_wrapper">
                 {% for new in news %}
                     <a href="{% url 'news-detail' new.id %}" class="article_container">

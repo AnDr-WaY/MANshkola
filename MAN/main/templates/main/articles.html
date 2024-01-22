@@ -14,6 +14,15 @@
                 Останні статті з корисною інформацією
             </h1>
 
+            <div class="search_container">
+                <form class="search_form" action="{% url 'search-articles' %}" method="get">
+                    <input class="search_input" type="search" name="q" placeholder="Пошук статті">
+                    <button class="search_button" type="submit">
+                        <img src="{% static 'main/icons/search.png' %}" alt="">
+                    </button>
+                </form>
+            </div>
+
             <div class="articles_wrapper">
                 {% for article in articles %}
                     <a href="{% url 'articles-detail' article.id %}" class="article_container">
