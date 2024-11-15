@@ -16,5 +16,5 @@
 
 ## **License**
 
-Допомога київ випущено за ліцензією MIT. Детальніше дивитися у файлі **[ЛІЦЕНЗІЯ](https://github.com/AnDr-WaY/MANshkola/blob/master/LICENSE)**.
+Допомога київ випущено за ліцензією MIT. Детальніше дивитися у файлі **[LICENSE](https://github.com/AnDr-WaY/MANshkola/blob/master/LICENSE)**.
 
