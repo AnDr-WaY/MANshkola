@@ -5,9 +5,6 @@ import os
 
 model = YOLO('ai/best.pt')  
 
-
-
-
 # Create your views here.
 def main(request):
     if request.method == 'POST':
