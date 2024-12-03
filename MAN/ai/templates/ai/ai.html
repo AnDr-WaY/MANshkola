@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'ai/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article list.css' %}">
+{% endblock %}
+
+{% block title %}Штучний інтелект{% endblock %}
+{% block content %}
+
+    <div class="ai_wrapper" id="particles-js">
+        <div class="ai_container">
+            <h1 class="ai_upload_title">Завантажте зображення</h1>
+            <p class="ai_upload_subtitle">З зображенням де на вашу думку є міна, а ШІ спропує розпізнати чи є на ньому ПМН</p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Проверить</button>
+            </form>
+            <p class="ai_upload_disclaimer">Зверніть увагу: результати, отримані за допомогою нейромережі, є допоміжними і не повинні сприйматися як остаточний або абсолютно точний висновок!</p>
+        </div>
+        
+    </div>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib --> <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="{% static 'ai/js/particlejs.js' %}"></script>
+{% endblock %}

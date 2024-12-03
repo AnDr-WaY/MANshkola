@@ -25,7 +25,7 @@
                 <div class="naw_links_wrapper">
                     <a href="{% url 'news' %}" class="nav_link hower_nav">Новини</a>
                     <a href="{% url 'articles' %}" class="nav_link  hower_nav">Корисна інформація</a>
-                    <a href="" class="ai_nav_link">Штучний інтелект</a>
+                    <a href="{% url 'ai' %}" class="ai_nav_link">Штучний інтелект</a>
                     {% if request.user.is_authenticated %}
                         {% for group in request.user.groups.all %} 
                             {% if group.name == 'Редактор' %}
@@ -46,6 +46,7 @@
         <div class="burger_content">
             <a href="{% url 'news' %}" class="burger_link">Новини</a>
             <a href="{% url 'articles' %}" class="burger_link">Корисна інформація</a>
+            <a href="{% url 'ai' %}" class="burger_link">Штучний інтелект</a>
             {% if request.user.is_authenticated %}
                 {% for group in request.user.groups.all %} 
                     {% if group.name == 'Редактор' %}

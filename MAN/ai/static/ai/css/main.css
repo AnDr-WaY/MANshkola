@@ -1,0 +1,76 @@
+.header{
+    background-color: #333333;
+}
+
+.nav_logo{
+    color: #fff;
+} 
+
+.nav_link{
+    color: #eeeeee;
+}
+.nav_link:hover{
+    color: #fff;
+}
+.hower_nav::after{
+    background-color: #fff;
+}
+.ai_nav_link{
+    background-color: #fff;
+    border: 3px solid #fff;
+    color: #333;
+}
+.nav_logo.hower_nav::after{
+    background-color: #fff;
+}
+.footer {
+    background-color: rgb(44, 44, 44);
+}
+.site_name{
+    color: #fff;
+}
+
+.ai_wrapper{
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ai_container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    height: 40%;
+    background-color: #00000093;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(7px);
+    box-shadow: 1px 5px 15px #333;
+}
+.ai_upload_disclaimer{
+    color: #333;
+    padding: 15px;
+    font-size: 12px;
+}
+.ai_upload_title{
+    margin-top: 55px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.ai_upload_subtitle{
+    color: #fff;
+    
+}
+
+#particles-js{
+    position: absolute; 
+    width: 100%;
+    height: 100%; 
+    background-color: #ffffff; 
+    background-image: url(""); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: 50% 50%;
+} 

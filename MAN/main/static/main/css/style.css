@@ -54,6 +54,7 @@ body.lock{
 
 
 .header{
+    text-align: center;
     position: fixed;
     z-index: 100;
     display: flex;
@@ -315,8 +316,11 @@ body.lock{
     font-size: 24px;
     margin-top: 20px;
 }
+.header.no-radius {
+    border-radius: 0; /* Radius removed when .burger has .active */
+}
 
-@media (max-width: 990px) {
+@media (max-width: 1105px) {
     .header{
         height: 65px;
     }
