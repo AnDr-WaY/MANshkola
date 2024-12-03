@@ -6,5 +6,5 @@ class UploadImageForm(forms.ModelForm):
         model = UploadedImage
         fields = ['image']
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'accept': 'image/*'})  # Указываем, что загружаем только изображения
+            'image': forms.ClearableFileInput(attrs={'accept': 'image/*'})
         }
