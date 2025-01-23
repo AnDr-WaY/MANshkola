@@ -28,7 +28,11 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ new.icon.url }}" class="info_img" alt="">
+            {% if new.icon %}
+                <img src="{{ new.icon.url }}" class="info_img" alt="">
+            {% elif new.icon_url %}
+                <img src="{{ new.icon_url }}" class="info_img" alt="">
+            {% endif %}
             <div class="info_content">
                 {% autoescape off %}{{ new.content|linebreaks }}{% endautoescape %}
             </div>

@@ -26,7 +26,11 @@
             <div class="articles_wrapper">
                 {% for new in news %}
                     <a href="{% url 'news-detail' new.id %}" class="article_container">
-                        <img src="{{ new.icon.url }}" alt="" class="article_img">
+                        {% if new.icon %}
+                            <img src="{{ new.icon.url }}" class="article_img" alt="">
+                        {% elif new.icon_url %}
+                            <img src="{{ new.icon_url }}" class="article_img" alt="">
+                        {% endif %}
 
                         <div class="article_title">{{ new.name }}</div>
                         <div class="article_info_wrapper">
