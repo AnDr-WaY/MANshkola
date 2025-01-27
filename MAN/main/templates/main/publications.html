@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'main/css/publications.css' %}">
 {% endblock %}
 
-{% block title %}Публікації{% endblock %}
+{% block title %}Мої публікації{% endblock %}
 {% block content %}
 
 
@@ -16,7 +16,7 @@
                 <div class="item_part_head">
                     <div class="my_item-title">Мої статті</div>
                     <a class="add_item" href="{% url 'create_article' %}">
-                        <span class="plus">+</span>Додати статтю
+                        <span class="plus">+</span> <span> Додати статтю</span>
                     </a>
                 </div>
                 <div class="parts">
@@ -37,9 +37,14 @@
             <div class="my_item">
                 <div class="item_part_head">
                     <div class="my_item-title">Мої новини</div>
-                    <a class="add_item" href="{% url 'create_news' %}">
-                        <span class="plus">+</span> <span> Додати новину</span>
-                    </a>
+                    <div class="action_buttons">
+                        <a class="add_item" href="{% url 'create_news' %}">
+                            <span class="plus">+</span> <span>Додати новину</span>
+                        </a>
+                        <a class="fetch_news" href="{% url 'fetch_news' %}">
+                            <span class="refresh">↻</span> <span>Оновити новини</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="parts">
                     {% for new in news %}
@@ -64,6 +69,15 @@
                 <h2 class="publstats_title"> Статистика:</h2>
                 <div class="publstats_desc">Статтей: {{ articles|length }}</div>
                 <div class="publstats_desc">Новин: {{ news|length }}</div>
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="message {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

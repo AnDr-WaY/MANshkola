@@ -5,10 +5,12 @@ from django.views.generic import DetailView, UpdateView, DeleteView, ListView
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.conf import settings
 
 from .models import Articles, News
 from .forms import LoginForm, CreateArticleForm, CreateNewsForm
+from .services.gnews_service import GNewsService
 
 
 
@@ -168,3 +170,19 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def fetch_news(request):
+    if not request.user.is_staff:
+        messages.error(request, "У вас немає прав для цієї дії")
+        return redirect('publications')
+    
+    service = GNewsService()
+    result = service.fetch_news(query="Ukraine", max_articles=10)
+    
+    if 'error' in result:
+        messages.error(request, f"Помилка при оновленні новин: {result['error']}")
+    else:
+        messages.success(request, result['success'])
+    
+    return redirect('publications')

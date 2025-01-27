@@ -64,4 +64,4 @@ class GNewsAPILog(models.Model):
         time_since_last_fetch = timezone.now() - self.last_fetch_time
         
         return time_since_last_fetch >= min_interval
-    
+
