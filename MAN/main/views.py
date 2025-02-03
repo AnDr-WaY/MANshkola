@@ -1,4 +1,3 @@
-import os
 from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, UpdateView, DeleteView, ListView
@@ -7,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.conf import settings
+from django.core.paginator import Paginator
+from django.core.cache import cache
 
 from .models import Articles, News
 from .forms import LoginForm, CreateArticleForm, CreateNewsForm
@@ -15,10 +16,31 @@ from .services.gnews_service import GNewsService
 
 
 def main(request):
-    return render(request, 'main/home.html',  {"articles": Articles.objects.all().order_by('-date')[:3], 'news': News.objects.all().order_by('-date')[:3]})
+    articles_cache_key = 'main_page_articles'
+    news_cache_key = 'main_page_news'
+    
+    articles = cache.get(articles_cache_key)
+    news = cache.get(news_cache_key)
+    
+    if articles is None:
+        articles = Articles.objects.select_related('author').order_by('-date')[:3]
+        cache.set(articles_cache_key, articles, 300) 
+        
+    if news is None:
+        news = News.objects.select_related('author').order_by('-date')[:3]
+        cache.set(news_cache_key, news, 300)  
+        
+    return render(request, 'main/home.html', {
+        "articles": articles,
+        "news": news
+    })
 
 def articles(request):
-    return render(request, 'main/articles.html', {"articles": Articles.objects.all().order_by('-date'), "news": News.objects.all().order_by('-date')})
+    articles_list = Articles.objects.select_related('author').order_by('-date')
+    paginator = Paginator(articles_list, 20)  # TODO: Зробити нормальну пагінацію в майбутньому
+    page = request.GET.get('page')
+    articles = paginator.get_page(page)
+    return render(request, 'main/articles.html', {"articles": articles})
 
 def news(request):
     return render(request, 'main/news.html', {"articles": Articles.objects.all().order_by('-date'), "news": News.objects.all().order_by('-date')})

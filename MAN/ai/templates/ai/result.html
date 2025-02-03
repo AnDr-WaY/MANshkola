@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'ai/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/article.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/article list.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/article-list.css' %}">
 {% endblock %}
 
 {% block title %}Штучний інтелект{% endblock %}
@@ -16,8 +16,9 @@
             <h1 class="ai_upload_title">Результат аналізу</h1>
         <p>{% if is_mine %}Міна знайдена!{% else %}Міна не знайдена.{% endif %}</p>
         <p>Впевненість: {{ confidence }}%</p>
-        <a href="/ai">Назад</a>
+        <a href="{% url 'ai' %}">Назад</a>
         <p class="ai_upload_disclaimer">Зверніть увагу: результати, отримані за допомогою нейромережі, є допоміжними і не повинні сприйматися як остаточний або абсолютно точний висновок!</p>
+
         </div>
         
     </div>
