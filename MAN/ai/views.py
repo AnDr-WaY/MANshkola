@@ -17,11 +17,16 @@ def main(request):
             probs = results[0].probs  
             predicted_class = probs.top1  
             confidence = int(probs.top1conf.item()*100)
-            is_mine = predicted_class == 0
+            is_mine = False if predicted_class == 1 else True
+            mine_type = ""
+            if predicted_class == 0:
+                mine_type = "ПМН"
+            elif predicted_class == 2:
+                mine_type = "ПТМ"
+
             
             os.remove(image_path)
-
-            return render(request, 'ai/result.html', {'is_mine': is_mine, 'confidence': confidence})
+            return render(request, 'ai/result.html', {'is_mine': is_mine, 'mine_type': mine_type, 'confidence': confidence})
     else:
         form = UploadImageForm()
 

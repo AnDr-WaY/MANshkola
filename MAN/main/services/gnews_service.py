@@ -28,7 +28,7 @@ class GNewsService:
         log = self._get_or_create_log()
         if log.requests_count >= 80: 
             return False
-        return log.can_fetch_now()  
+        return True #log.can_fetch_now()  
 
     def fetch_news(self, query="Ukraine", max_articles=10):
         if not self.can_make_request():

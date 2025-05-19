@@ -35,12 +35,15 @@ def main(request):
         "news": news
     })
 
+
+
+
 def articles(request):
     articles_list = Articles.objects.select_related('author').order_by('-date')
     paginator = Paginator(articles_list, 20)  # TODO: Зробити нормальну пагінацію в майбутньому
     page = request.GET.get('page')
     articles = paginator.get_page(page)
-    return render(request, 'main/articles.html', {"articles": articles})
+    return render(request, 'main/articles.html', {"articles": articles, "news": News.objects.order_by('-date')[:5]})
 
 def news(request):
     return render(request, 'main/news.html', {"articles": Articles.objects.all().order_by('-date'), "news": News.objects.all().order_by('-date')})
@@ -79,7 +82,12 @@ class NewDetailView(DetailView):
 
 def publications(request):
     if request.user.is_authenticated:
-        return render(request, 'main/publications.html', {"articles": Articles.objects.all().order_by('-date'), "news": News.objects.all().order_by('-date')})
+        user_articles = Articles.objects.filter(author=request.user).order_by('-date')
+        user_news = News.objects.filter(author=request.user).order_by('-date')
+        return render(request, 'main/publications.html', {
+            "articles": user_articles,
+            "news": user_news
+        })
     else:
         return redirect('home')
     
@@ -200,7 +208,7 @@ def fetch_news(request):
         return redirect('publications')
     
     service = GNewsService()
-    result = service.fetch_news(query="Ukraine", max_articles=10)
+    result = service.fetch_news(query="Ukraine", max_articles=20)
     
     if 'error' in result:
         messages.error(request, f"Помилка при оновленні новин: {result['error']}")

@@ -14,11 +14,11 @@
     <div class="ai_wrapper" id="particles-js">
         <div class="ai_container">
             <h1 class="ai_upload_title">Завантажте зображення</h1>
-            <p class="ai_upload_subtitle">З зображенням де на вашу думку є міна, а ШІ спропує розпізнати чи є на ньому ПМН</p>
+            <p class="ai_upload_subtitle">З зображенням де на вашу думку є міна, а ШІ спропує розпізнати чи є на ньому ПМН або ПТМ</p>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Проверить</button>
+                <button type="submit">Перевірити</button>
             </form>
             <p class="ai_upload_disclaimer">Зверніть увагу: результати, отримані за допомогою нейромережі, є допоміжними і не повинні сприйматися як остаточний або абсолютно точний висновок!</p>
         </div>
